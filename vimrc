@@ -1,8 +1,10 @@
 set ai                                 " Auto indent
+set cc=100                             " Color column
 set clipboard=unnamed                  " Set system clipboard
 set confirm                            " Don't fail because of unsaved changes, confirm instead
 set cursorline                         " Highlight current line 
 set hidden                             " Hidden changes in buffers
+set incsearch                          " Set incremental search
 set laststatus=2                       " Status line
 set lazyredraw                         " Speed it up
 set list                               " Show non printable chars
@@ -18,7 +20,7 @@ syntax on                              " Enable syntax highlighting
 
 " Colorscheme
 set t_Co=256
-colorscheme gentooish
+colorscheme candycode
 
 " Ignore case on searchs, unless caps are present
 set ignorecase
@@ -44,19 +46,6 @@ execute pathogen#infect()
 
 " Set the user command key (space)
 let mapleader = " "
-
-" Line Wrap at 80 characters
-function! LineWrapToggle()
-    if(&tw == 0)
-        set tw=79
-        set wrap
-    else
-        set tw=0
-        set nowrap
-    endif
-endfunc
-nnoremap <Leader>0 :call LineWrapToggle()<cr>
-set tw=0
 
 " Relative numbers
 function! RelativeNumberToggle()
@@ -84,6 +73,19 @@ nnoremap <Leader>5 :bnext<CR>
 nnoremap <Leader>6 :b#<CR>
 nnoremap <Leader>7 :buffers<CR>:buffer<Space>
 nnoremap <Leader>8 :bdelete<CR>
+
+" Gundo
+nnoremap <Leader>0 :GundoToggle<CR>
+
+" Easy navigation in insert mode
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
 
 " Backup and Swap files settings
 silent execute '!mkdir ~/.vim/ >/dev/null 2>&1'
