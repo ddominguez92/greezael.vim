@@ -1,5 +1,5 @@
 cd ~/.vim
-ln -s ~/.vim/vimrc ~/.vimrc
+ln ~/.vim/vimrc ~/.vimrc
 git submodule init
 git submodule update
 
