@@ -21,6 +21,7 @@ syntax on                              " Enable syntax highlighting
 " Colorscheme
 set t_Co=256
 colorscheme mustang
+"colorscheme calmar256-dark
 
 " 80 column indicator
 match ErrorMsg '\%>80v.\+'
