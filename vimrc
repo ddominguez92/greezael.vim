@@ -1,9 +1,9 @@
 set ai                                 " Auto indent
-"set cc=80                              " Color column
 set clipboard=unnamed                  " Set system clipboard
 set confirm                            " Confirm instead of fail
 set cursorline                         " Highlight current line
 set hidden                             " Hidden changes in buffers
+set hlsearch
 set incsearch                          " Set incremental search
 set laststatus=2                       " Status line
 set lazyredraw                         " Speed it up
@@ -19,7 +19,8 @@ set wildmenu                           " Better command-line completion
 syntax on                              " Enable syntax highlighting
 
 " Colorscheme
-colorscheme herald
+set t_Co=256
+colorscheme mustang
 
 " 80 column indicator
 match ErrorMsg '\%>80v.\+'
@@ -50,12 +51,17 @@ execute pathogen#infect()
 " Clang_complete
 let g:clang_complete_auto = 1
 let g:clang_complete_copen = 1
-"let s:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
-"let s:clang_library_path='/usr/local/Cellar/llvm/3.5.0/lib/'
-let s:clang_library_path='/usr/local/opt/llvm/lib/'
-if isdirectory(s:clang_library_path)
-    let g:clang_library_path=s:clang_library_path
-endif
+
+let s:clang_library_locations=['/usr/lib/llvm-3.5/lib/',
+            \ '/usr/local/opt/llvm/lib/',
+            \ '/usr/local/Cellar/llvm/3.5.0/lib/',
+            \ '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/']
+for location in s:clang_library_locations
+    if isdirectory(location)
+        let g:clang_library_path=location
+        break
+    endif
+endfor
 
 " Set the user command key (space)
 let mapleader = " "
