@@ -1,8 +1,8 @@
 set ai                                 " Auto indent
-set cc=100                             " Color column
+"set cc=80                              " Color column
 set clipboard=unnamed                  " Set system clipboard
-set confirm                            " Don't fail because of unsaved changes, confirm instead
-set cursorline                         " Highlight current line 
+set confirm                            " Confirm instead of fail
+set cursorline                         " Highlight current line
 set hidden                             " Hidden changes in buffers
 set incsearch                          " Set incremental search
 set laststatus=2                       " Status line
@@ -19,8 +19,11 @@ set wildmenu                           " Better command-line completion
 syntax on                              " Enable syntax highlighting
 
 " Colorscheme
-set t_Co=256
-colorscheme candycode
+colorscheme herald
+
+" 80 column indicator
+match ErrorMsg '\%>80v.\+'
+
 
 " Ignore case on searchs, unless caps are present
 set ignorecase
@@ -44,6 +47,16 @@ cmap w!! w !sudo tee % >/dev/null
 " Plugins
 execute pathogen#infect()
 
+" Clang_complete
+let g:clang_complete_auto = 1
+let g:clang_complete_copen = 1
+"let s:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+"let s:clang_library_path='/usr/local/Cellar/llvm/3.5.0/lib/'
+let s:clang_library_path='/usr/local/opt/llvm/lib/'
+if isdirectory(s:clang_library_path)
+    let g:clang_library_path=s:clang_library_path
+endif
+
 " Set the user command key (space)
 let mapleader = " "
 
@@ -59,8 +72,12 @@ endfunc
 nnoremap <Leader>9 :call RelativeNumberToggle()<cr>
 set number " Show line numbers
 
-" NerdTreeToogle
-nnoremap <Leader>1 :NERDTreeToggle<CR>
+" File browser
+"nnoremap <Leader>1 :NERDTreeToggle<CR>
+nnoremap <Leader>1 :e.<CR>
+let g:NERDTreeHijackNetrw=0
+let g:netrw_liststyle=3
+
 " Save
 nnoremap <Leader>2 :w<CR>
 " Change to shell
