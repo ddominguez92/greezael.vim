@@ -1,7 +1,7 @@
 set ai                                 " Auto indent
 set clipboard=unnamed                  " Set system clipboard
 set confirm                            " Confirm instead of fail
-set cursorline                         " Highlight current line
+"set cursorline                         " Highlight current line
 set hidden                             " Hidden changes in buffers
 set hlsearch
 set incsearch                          " Set incremental search
@@ -24,8 +24,10 @@ colorscheme mustang
 "colorscheme calmar256-dark
 
 " 80 column indicator
-match ErrorMsg '\%>80v.\+'
+"match ErrorMsg '\%>80v.\+'
 
+" Spellcheck
+"set spell
 
 " Ignore case on searchs, unless caps are present
 set ignorecase
@@ -54,9 +56,10 @@ let g:clang_complete_auto = 1
 let g:clang_complete_copen = 1
 
 let s:clang_library_locations=['/usr/lib/llvm-3.5/lib/',
+            \ '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/',
             \ '/usr/local/opt/llvm/lib/',
             \ '/usr/local/Cellar/llvm/3.5.0/lib/',
-            \ '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/']
+            \ '']
 for location in s:clang_library_locations
     if isdirectory(location)
         let g:clang_library_path=location
@@ -110,6 +113,9 @@ inoremap <C-h> <Left>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-l> <Right>
+
+" Remove trailing whitespace
+:nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " Backup and Swap files settings
 silent execute '!mkdir ~/.vim/ >/dev/null 2>&1'
