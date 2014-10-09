@@ -84,7 +84,7 @@ set number " Show line numbers
 
 " File browser
 "nnoremap <Leader>1 :NERDTreeToggle<CR>
-nnoremap <Leader>1 :e.<CR>
+nnoremap <Leader>1 :e.<CR>:set number<CR>
 let g:NERDTreeHijackNetrw=0
 let g:netrw_liststyle=3
 
