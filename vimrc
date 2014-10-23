@@ -1,7 +1,7 @@
 set ai                                 " Auto indent
 set clipboard=unnamed                  " Set system clipboard
 set confirm                            " Confirm instead of fail
-"set cursorline                         " Highlight current line
+set cursorline                         " Highlight current line
 set hidden                             " Hidden changes in buffers
 set hlsearch
 set incsearch                          " Set incremental search
@@ -113,6 +113,19 @@ inoremap <C-h> <Left>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-l> <Right>
+
+"These are to cancel the default behavior of d, D, c, C
+"  to put the text they delete in the default register.
+"  Note that this means e.g. "ad won't copy the text into
+"  register a anymore.  You have to explicitly yank it.
+nnoremap d "dd
+vnoremap d "dd
+nnoremap D "dD
+vnoremap D "dD
+nnoremap c "dc
+vnoremap c "dc
+nnoremap C "dC
+vnoremap C "dC
 
 " Remove trailing whitespace
 :nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
