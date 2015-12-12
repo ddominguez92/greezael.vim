@@ -67,6 +67,10 @@ for location in s:clang_library_locations
     endif
 endfor
 
+" Syntastic with C++11
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
+
 " Set the user command key (space)
 let mapleader = " "
 
