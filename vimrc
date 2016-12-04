@@ -131,6 +131,14 @@ vnoremap c "dc
 nnoremap C "dC
 vnoremap C "dC
 
+" Tab navigation like Firefox.
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-t>     <Esc>:tabnew<CR>
+
+" Alternative tab navigation
+nnoremap H gT
+nnoremap L gt
+
 " Remove trailing whitespace
 :nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
