@@ -51,22 +51,6 @@ cmap w!! w !sudo tee % >/dev/null
 " Plugins
 execute pathogen#infect()
 
-" Clang_complete
-let g:clang_complete_auto = 1
-let g:clang_complete_copen = 1
-
-let s:clang_library_locations=['/usr/lib/llvm-3.5/lib/',
-            \ '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/',
-            \ '/usr/local/opt/llvm/lib/',
-            \ '/usr/local/Cellar/llvm/3.5.0/lib/',
-            \ '']
-for location in s:clang_library_locations
-    if isdirectory(location)
-        let g:clang_library_path=location
-        break
-    endif
-endfor
-
 " Syntastic with C++11
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
@@ -87,8 +71,8 @@ nnoremap <Leader>9 :call RelativeNumberToggle()<cr>
 set number " Show line numbers
 
 " File browser
-"nnoremap <Leader>1 :NERDTreeToggle<CR>
-nnoremap <Leader>1 :e.<CR>:set number<CR>
+nnoremap <Leader>1 :NERDTreeToggle<CR>
+"nnoremap <Leader>1 :e.<CR>:set number<CR>
 let g:NERDTreeHijackNetrw=0
 let g:netrw_liststyle=3
 
